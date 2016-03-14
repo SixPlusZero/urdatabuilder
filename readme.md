@@ -7,10 +7,6 @@
 * 本数据生成器文件夹外应当放置 **soc-LiveJournal1.txt**
 * 在make之前请使用mkdir在文件夹中生成 **data**，**bin**两个文件夹
 
-To use this template, choose one of the following options to get started:
-* Download the latest release on Start Bootstrap
-* Fork this repository on GitHub
-
 ## Compile
 执行 ** make bins ** 来进行编译，编译后bin文件夹内出现三个binary
 
