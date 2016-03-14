@@ -13,7 +13,7 @@
 ## Graph Creator
 
 生成图和加密图均由Makefile里的参数进行控制  
-生成后执行 **make graph**，在data文件夹内得到所需数据。  
+修改Makefile后执行 **make graph**，在data文件夹内得到所需数据。  
 以下介绍Makefile内前三个参数
 * OVERLAP 控制两图共有的点数
 * NODE 控制总图的点数
