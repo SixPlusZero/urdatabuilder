@@ -8,10 +8,10 @@
 * 在make之前请使用mkdir在文件夹中生成 **data**，**bin**两个文件夹
 
 ## Compile
-执行 ** make bins ** 来进行编译，编译后bin文件夹内出现三个binary
+执行 **make bins** 来进行编译，编译后bin文件夹内出现三个binary
 
 ## Graph Creator
-生成图和加密图均由Makefile里的参数进行控制
+生成图和加密图均由Makefile里的参数进行控制  
 以下介绍Makefile内前三个参数
 * OVERLAP 控制两图共有的点数
 * NODE 控制总图的点数
