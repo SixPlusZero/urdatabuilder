@@ -15,7 +15,7 @@ Please specify parameters in Makefile:
 
 After setting parameters, use **make graph** to generate dataset in data folder.
 
-###Example:
+### Example:
 To get two graphs each contains 7500 nodes and use Sparsify to anonymize, set 
 * OVERLAP = 5000
 * NODE = 10000
