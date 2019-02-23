@@ -2,7 +2,7 @@
 
 ## Getting Started
 * In order to perform data extraction on Live Journal(LJ) data, please place **soc-LiveJournal1.txt** outside this folder.
-* Please make sure folders **data**，**bin** exist inside this main folder.
+* Please make sure folders **data** and **bin** exist inside this main folder.
 
 ## Compile
 Please use command **make bins** to compile. After compilation, there should be **nodeSel**, **graphSplit** and **graphAnonymity** in bin folder. 
