@@ -95,7 +95,7 @@ void output(){
 		fprintf(fp, "%d %d\n", nTag[i], i);
 	}
 	fclose(fp);
-	fp = fopen("./data/graphTarget.txt","w");
+	fp = fopen("./data/anonymized.txt","w");
 	fprintf(fp, "%d %d\n", n, m - pnum);
 	for (int i = 1; i <= m; i++){
 		if (eg[i].valid)

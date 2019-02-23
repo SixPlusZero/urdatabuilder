@@ -116,7 +116,7 @@ void Process(){
 		m1 += del1;
 		m2 += del2;
 	}
-	FILE *fw1 = fopen("./data/graph1.txt","w");
+	FILE *fw1 = fopen("./data/crawled.txt","w");
 	FILE *fw2 = fopen("./data/graph2.txt","w");
 	fprintf(fw1,"%d %d\n", n1, m1);
 	fprintf(fw2,"%d %d\n", n2, m2);

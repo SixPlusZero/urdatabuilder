@@ -4,7 +4,7 @@ ENCRYPT=1
 
 THREAD=8
 
-CODE=./source/
+CODE=./src/
 OBJ=./bin/
 DATA=./data/
 

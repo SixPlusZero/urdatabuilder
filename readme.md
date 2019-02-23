@@ -1,33 +1,25 @@
-# 数据生成器 - 配合LiveJournal原数据使用
-
-
-
+# Data Builder
 
 ## Getting Started
-* 本数据生成器文件夹外应当放置 **soc-LiveJournal1.txt**
-* 在make之前请使用mkdir在文件夹中生成 **data**，**bin**两个文件夹
+* In order to perform data extraction on Live Journal(LJ) data, please place **soc-LiveJournal1.txt** outside this folder.
+* Please make sure folders **data**，**bin** exist inside this main folder.
 
 ## Compile
-执行 **make bins** 来进行编译，编译后bin文件夹内出现三个binary
+Please use command **make bins** to compile. After compilation, there should be **nodeSel**, **graphSplit** and **graphAnonymity** in bin folder. 
 
-## Graph Creator
+## LJ Graph Creator
+Please specify parameters in Makefile:
+* NODE: Number of nodes extracted from original LJ dataset.
+* OVERLAP: Number of nodes two graphs have in common.
+* ENCRTPY: Anonymization algorithm id. (0: Naive, 1: Sparsify, 2: Switch). The defualt rate for Sparsify and Switch are both 0.1(Specified in graphAnonymity.cpp).
 
-生成图和加密图均由Makefile里的参数进行控制  
-修改Makefile后执行 **make graph**，在data文件夹内得到所需数据。  
-以下介绍Makefile内前三个参数
-* OVERLAP 控制两图共有的点数
-* NODE 控制总图的点数
-* ENCRYPT 控制匿名化方法。其中 Case 0: Naive, Case 1: Sparsify, Case 2: Switching
+After setting parameters, use **make graph** to generate dataset in data folder.
 
 ###Example:
-两个7500点图，用Sparsify匿名化：
-
+To get two graphs each contains 7500 nodes and use Sparsify to anonymize, set 
 * OVERLAP = 5000
 * NODE = 10000
 * ENCRYPT = 1
 
-解释: （NODE - OVERLAP）/ 2 + OVERLAP = 7500  
-然后在主文件加下执行make graph  
-## Copyright and License
-
---Jialin Liu, 2016/03/14
+Explanation: （NODE - OVERLAP）/ 2 + OVERLAP = 7500  
+Execute **make graph** and you will get crawled.txt and anonymized.txt for G1 and G2 respectively.
