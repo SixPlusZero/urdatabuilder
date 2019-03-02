@@ -6,6 +6,7 @@
 using namespace std;
 #define N 100000
 #define M 1000000
+
 struct edge{
 	int h;
 	int t;
@@ -13,11 +14,10 @@ struct edge{
 };
 struct edge eg[M];
 vector< vector<int> > edges;
-int nTag[N], pnum, naive_cnt = 10000;
+vector< int > replaced_edges;
+int nTag[N], del_num, rep_num, naive_cnt = 10000;
 int n, m, TYPE;
 FILE *fp = NULL;
-
-
 
 void init(){
 	fp = fopen("./data/graph2.txt","r");
@@ -35,6 +35,7 @@ void init(){
 	}
 	fclose(fp);
 }
+
 void naive(){
 	srand(time(NULL));
 	int tCount = naive_cnt;
@@ -49,9 +50,10 @@ void naive(){
 		nTag[y] = tmp;
 	}
 }
+
 void sparsify(){
 	srand(time(NULL));
-	int cnt = pnum;
+	int cnt = del_num;
 	while (cnt--){
 		retry:
 			int x = rand() % m + 1;
@@ -61,9 +63,10 @@ void sparsify(){
 	}
 
 }
+
 void switching(){
 	srand(time(NULL));
-	int cnt = pnum / 2;
+	int cnt = del_num / 2;
 	while (cnt--){
 		retry:
 			
@@ -89,6 +92,36 @@ void switching(){
 			eg[p2].t = x2;
 	}
 }
+
+void perturb(){
+	srand(time(NULL));
+	int cnt = rep_num;
+	while (cnt--){
+		p_del_retry:
+			int id = rand() % m + 1;
+			if (eg[id].valid == 0)
+				goto p_del_retry;
+			eg[id].valid = 0;
+			replaced_edges.push_back(id);
+
+	}
+
+	for (vector<int>::iterator it = replaced_edges.begin(); it != replaced_edges.end(); it++) {
+		int id = *it;
+		p_add_retry:
+			int h = rand() % n + 1;
+			int t = rand() % n + 1;
+			if (h == t)
+				goto p_add_retry;
+			if (edges[h][t] == 1)
+				goto p_add_retry;
+			edges[h][t] = 1;
+			eg[id].h = h;
+			eg[id].t = t;
+			eg[id].valid = 1;
+	}
+}
+
 void output(){
 	fp = fopen("./data/pair.txt","w");
 	for (int i = 1; i <= n; i++){
@@ -96,24 +129,29 @@ void output(){
 	}
 	fclose(fp);
 	fp = fopen("./data/anonymized.txt","w");
-	fprintf(fp, "%d %d\n", n, m - pnum);
+	fprintf(fp, "%d %d\n", n, m - del_num);
 	for (int i = 1; i <= m; i++){
 		if (eg[i].valid)
 			fprintf(fp, "%d %d\n", nTag[eg[i].h], nTag[eg[i].t]);
 	}
 	fclose(fp);
 }
+
 int main(int argv, char* argc[]){
 	TYPE = atoi(argc[1]);
 	init();
 	switch (TYPE){
 		case 1:
-			pnum = (int)(0.1*m);
+			del_num = (int)(0.1*m);
 			sparsify();
 			break;
 		case 2:
-			pnum = (int)(0.1*m);
+			del_num = (int)(0.1*m);
 			switching();
+			break;
+		case 3:
+			rep_num = (int)(0.1*m);
+			perturb();
 			break;
 		default:
 			naive();
