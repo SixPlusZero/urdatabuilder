@@ -38,7 +38,8 @@ void init(){
 
 void naive(){
 	srand(time(NULL));
-	int tCount = naive_cnt;
+	//int tCount = naive_cnt;
+	int tCount = 0;
 	int x, y;
 	int tmp;
 	while(tCount--){
